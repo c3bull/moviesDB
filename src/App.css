@@ -1,38 +1,446 @@
-.App {
-  text-align: center;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+::-webkit-scrollbar {
+    display: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#loginBackground {
+    background-color: #3B3B3B;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#loginSecondBackground {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.App-link {
-  color: #61dafb;
+#loginSecondBackground::before {
+    content: "";
+    background: url("./images/movielist.jpg") repeat center;
+    position: absolute;
+    filter: blur(5px);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0.2;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#SignUpBackground {
+    background-color: #3B3B3B;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#SignUpSecondBackground {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 0;
+}
+
+#SignUpSecondBackground::before {
+    content: "";
+    background: url("./images/movielist.jpg") repeat center;
+    position: absolute;
+    filter: blur(5px);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0.2;
+    z-index: -1;
+}
+
+.loginImage {
+    width: 200px;
+    height: 200px;
+}
+
+.moviesImg {
+    width: 200px;
+    height: 200px;
+    transition: transform .2s;
+    margin: 10px;
+}
+
+.moviesImg:hover {
+    transform: scale(1.05); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    box-shadow: 0 0 5px black;
+}
+
+.loginForm {
+    background-color: red;
+}
+
+.loginContent {
+    color: white;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+}
+
+.imageCss {
+    display: flex;
+    justify-content: center;
+}
+
+.imageCss {
+    display: flex;
+    justify-content: center;
+}
+
+.mainpageImage {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+}
+
+#mainpageBackground {
+    background-color: #F7F7F7;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 150px;
+}
+
+#mainpageContent {
+    background-color: #3B3B3B;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.navbarContent {
+    background-image: url("./images/movielist.jpg");
+    content: "";
+    height: 40vh;
+    width: 100vw;
+    justify-content: center;
+    margin-bottom: 10%;
+}
+
+.navbarImgSearchLogout {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    transition: 850ms;
+}
+
+.navbarImgSearchLogout:hover {
+    background-color: black;
+    transition: 850ms;
+}
+
+/*.navbarContent::before {*/
+/*    content: "";*/
+/*    background: url("./images/movielist.jpg") center;*/
+/*    position: absolute;*/
+/*    filter: blur(5px);*/
+/*    top: 0;*/
+/*    right: 0;*/
+/*    bottom: 0;*/
+/*    left: 0;*/
+/*    opacity: 0.2;*/
+/*}*/
+
+
+.navbarSearch {
+    margin: 1%;
+    width: 30%;
+}
+
+.navbarSearchInput {
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    padding-left: 10px;
+    border: 2px solid;
+}
+
+.scrollableDivSize {
+    background-color: #F1F1F1;
+    display: flex;
+    justify-content: center;
+    padding: 3%;
+    border-radius: 10px;
+    border: 1px solid;
+    align-items: center;
+}
+
+.scrollableDiv {
+    display: flex;
+    overflow-x: scroll;
+    width: 60vw;
+}
+
+.footer {
+    width: 100%;
+    height: 100px;
+    background: rgb(70,70,70);
+    background: linear-gradient(180deg, rgba(70,70,70,1) 0%, rgba(138,138,138,1) 100%);
+    display: flex;
+    justify-content: center;
+    color: white;
+    align-items: center;
+}
+
+.categoryLabel {
+    margin-top: 8%;
+    display: flex;
+    justify-content: center;
+    color: black;
+    font-size: 30px;
+    padding: 1%;
+}
+
+.categoryDiv {
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.sidebar {
+    position: fixed;
+    top: 50vh;
+    left: 0;
+}
+
+.menu-bars {
+    margin-left: 2rem;
+    font-size: 2rem;
+    background: none;
+}
+
+/*.slideNext{*/
+/*    background-color: blue;*/
+/*    width: 60px;*/
+/*    height: 60px;*/
+/*    display: flex;*/
+/*    position: absolute;*/
+/*    left: 72%;*/
+/*    !*opacity: 0.5;*!*/
+/*    border-radius: 10px;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/
+
+.nav-menu {
+    background-color: #464646;
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 30%;
+    left: -100%;
+    transition: 850ms;
+    border-radius: 0px 20px 20px 0px;
+    opacity: 0.98;
+}
+
+.nav-menu.active {
+    left: 0;
+    transition: 350ms;
+}
+
+.slideNext {
+    background-color: blue;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    position: absolute;
+    left: 72%;
+    /*opacity: 0.5;*/
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.slideNext.active {
+    transition: 350ms;
+    background-color: red;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    position: absolute;
+    left: 72%;
+    /*opacity: 0.5;*/
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+/*.slideNext{*/
+/*    background-color: blue;*/
+/*    width: 60px;*/
+/*    height: 60px;*/
+/*    display: flex;*/
+/*    position: absolute;*/
+/*    left: 72%;*/
+/*    !*opacity: 0.5;*!*/
+/*    border-radius: 10px;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/
+
+.nav-text {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 8px 0px 8px 16px;
+    list-style: none;
+    height: 60px;
+}
+
+.nav-text a {
+    text-decoration: none;
+    color: #F7F7F7;
+    font-size: 18px;
+    width: 95%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    border-radius: 4px;
+}
+
+.nav-text a:hover {
+    background-color: #E1E1E1;
+    color: #464646;
+}
+
+.nav-menu-items {
+    width: 100%;
+}
+
+.navbar-toggle {
+    background-color: #464646;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    border-radius: 0px 20px 0px 0px;
+}
+
+span {
+    margin-left: 16px;
+}
+
+.allDataDiv {
+    background-color: #F7F7F7;
+    padding-bottom: 10px;
+}
+
+.topContentDiv:hover + .movieStoryline {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    background-color: #F1F1F1;
+    opacity: 0.9;
+}
+
+.movieStoryline{
+    margin-top: 10vh;
+    border-radius: 10px;
+    height: 80vh;
+    padding: 20px;
+    margin-left: 20%;
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 130vh;
+    transition: 350ms;
+    /*z-index: 10;*/
+}
+
+.allDataSingleDiv {
+    border: 1px solid #DFDFDF;
+    background-color: #F5F5F5;
+    margin-left: 30%;
+    margin-right: 30%;
+    height: 200px;
+    margin-bottom: 2%;
+}
+
+.allDataPosterDiv {
+    float: left;
+    height: 100%;
+}
+
+.allDataPoster {
+    height: 100%;
+    padding: 3%;
+    transition: 350ms;
+}
+
+.allDataPoster:hover {
+    transform: scale(1.03);
+    transition: 350ms;
+}
+
+
+.allDataContent {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2%;
+}
+
+.allDataTitleYear {
+    display: flex;
+    font-size: 16px;
+}
+
+.allDataRating {
+    float: left;
+    display: flex;
+    font-size: 16px;
+    align-items: center;
+}
+
+.moviesTitle {
+    display: flex;
+    justify-content: center;
+}
+
+.singleDataImg {
+    width: 200px;
+    height: 200px;
+}
+
+.addMovieInfo{
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: center;
+    padding: 3%;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.addMovieContent{
+    margin-left: 20%;
+    margin-right: 20%;
+    padding-bottom: 10px;
 }
