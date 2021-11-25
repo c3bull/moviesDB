@@ -29,7 +29,7 @@ const MainContent = () => {
                                                   title={item.title}
                                                   storyline={item.storyline}
                                     />
-                                ))};
+                                ))}
                             </div>
                         </div>
                     </div>
@@ -46,7 +46,7 @@ const MainContent = () => {
                                                   title={item.title}
                                                   storyline={item.storyline}
                                     />
-                                ))};
+                                ))}
                             </div>
                         </div>
                     </div>
@@ -62,7 +62,7 @@ const MainContent = () => {
                                                   title={item.title}
                                                   storyline={item.storyline}
                                     />
-                                ))};
+                                ))}
                             </div>
                         </div>
                     </div>
@@ -78,7 +78,7 @@ const MainContent = () => {
                                                   title={item.title}
                                                   storyline={item.storyline}
                                     />
-                                ))};
+                                ))}
                             </div>
                         </div>
                     </div>
