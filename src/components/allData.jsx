@@ -1,54 +1,63 @@
-import React from 'react';
-import obrazek from "../images/film.png";
-import {Sidebardata} from "./sidebardata";
-import {Link, useNavigate} from "react-router-dom";
-import {moviesDatabase} from "./moviesdb";
+import React, {useEffect, useState} from 'react';
+import {useNavigate} from "react-router-dom";
 import * as AiIcons from "react-icons/ai";
 import Sidebar from "./sidebar";
 import Footer from "./footer";
 import Navbar from "./navbar";
+import axios from "axios";
 
 const AllData = () => {
 
     const navigate = useNavigate();
+    const [movies, setMovies] = useState([])
 
-    const LogOutButton = () => {
-        navigate('/login')
+    const goToDetailsButton = (id) => {
+        navigate('/details/' + id)
     };
 
-        return (
-            <div>
-                <div className="allDataDiv">
-                    <Navbar/>
-                    <div>
-                        {moviesDatabase.map((item, index) => {
-                            return (
-                                <div className="allDataSingleDiv" key={index}>
+    useEffect(() => {
+        axios.get('https://pr-movies.herokuapp.com/api/movies')
+            .then((response) => {
+                setMovies(response.data)
+                console.log('movies ' + movies)
+            }).then()
+    }, []);
 
-                                    <div className="allDataPosterDiv">
-                                        <img src={item.posterurl} className="allDataPoster"/>
+    return (
+        <div>
+            <div className="all-data-div">
+                <Navbar/>
+                <div>
+                    {movies.map((item, index) => {
+                        return (
+                            <div className="all-data-single-div" key={index} onClick={() => {
+                                goToDetailsButton(item.id)
+                            }}>
+
+                                <div className="all-data-poster-div">
+                                    <img src={item.image} className="all-data-poster"/>
+                                </div>
+                                <div className="all-data-content">
+                                    <div className="all-data-title-year">
+                                        {item.title}{/* • {item.year}*/}
                                     </div>
-                                    <div className="allDataContent">
-                                        <div className="allDataTitleYear">
-                                            {item.title} • {item.year}
-                                        </div>
-                                        <div className="allDataRating">
-                                            <AiIcons.AiFillStar color="orange" size="20px"/> {item.imdbRating}
-                                        </div>
-                                        <div className="allDataRating">
-                                            {item.genres}
-                                        </div>
+                                    <div className="all-data-rating">
+                                        <AiIcons.AiFillStar color="orange" size="20px"/> {item.imdbRating}
+                                    </div>
+                                    <div className="all-data-rating">
+                                        {item.genres}
                                     </div>
                                 </div>
-                            )
-                        })}
-                    </div>
-
+                            </div>
+                        )
+                    })}
                 </div>
-                <Sidebar/>
-                <Footer/>
+
             </div>
-        );
+            <Sidebar/>
+            <Footer/>
+        </div>
+    );
 }
 
 export default AllData;

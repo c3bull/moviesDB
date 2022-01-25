@@ -4,11 +4,31 @@
     padding: 0;
 }
 
-::-webkit-scrollbar {
+body::-webkit-scrollbar {
     display: none;
 }
 
-#loginBackground {
+.scrollable-div::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+
+.scrollable-div::-webkit-scrollbar
+{
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+.scrollable-div::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}
+
+#login-background {
     background-color: #3B3B3B;
     width: 100vw;
     height: 100vh;
@@ -17,7 +37,7 @@
     justify-content: center;
 }
 
-#loginSecondBackground {
+#login-second-background {
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -25,7 +45,7 @@
     justify-content: center;
 }
 
-#loginSecondBackground::before {
+#login-second-background::before {
     content: "";
     background: url("./images/movielist.jpg") repeat center;
     position: absolute;
@@ -37,7 +57,7 @@
     opacity: 0.2;
 }
 
-#SignUpBackground {
+#sign-up-background {
     background-color: #3B3B3B;
     width: 100vw;
     height: 100vh;
@@ -46,7 +66,7 @@
     justify-content: center;
 }
 
-#SignUpSecondBackground {
+#sign-up-second-background {
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -55,7 +75,7 @@
     z-index: 0;
 }
 
-#SignUpSecondBackground::before {
+#sign-up-second-background::before {
     content: "";
     background: url("./images/movielist.jpg") repeat center;
     position: absolute;
@@ -68,51 +88,49 @@
     z-index: -1;
 }
 
-.loginImage {
+.login-image {
     width: 200px;
     height: 200px;
 }
 
-.moviesImg {
+.sign-up-image {
+    width: 240px;
+    height: 240px;
+    margin-right: 20px;
+}
+
+.movies-img {
     width: 200px;
     height: 200px;
     transition: transform .2s;
     margin: 10px;
+    cursor: pointer;
 }
 
-.moviesImg:hover {
+.movies-img:hover {
     transform: scale(1.05); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
     box-shadow: 0 0 5px black;
 }
 
-.loginForm {
-    background-color: red;
-}
-
-.loginContent {
+.login-content {
     color: white;
     position: absolute;
     justify-content: center;
     align-items: center;
 }
 
-.imageCss {
+.image-css {
     display: flex;
     justify-content: center;
 }
 
-.imageCss {
-    display: flex;
-    justify-content: center;
-}
-
-.mainpageImage {
+.navbar-go-to-mainpage-image {
     cursor: pointer;
     width: 50px;
     height: 50px;
 }
 
-#mainpageBackground {
+#mainpage-background {
     background-color: #F7F7F7;
     width: 100%;
     height: 100%;
@@ -121,7 +139,7 @@
     padding-bottom: 150px;
 }
 
-#mainpageContent {
+#mainpage-content {
     background-color: #3B3B3B;
     width: 100%;
     height: 100%;
@@ -129,7 +147,7 @@
     justify-content: center;
 }
 
-.navbarContent {
+.navbar-content {
     background-image: url("./images/movielist.jpg");
     content: "";
     height: 40vh;
@@ -138,7 +156,7 @@
     margin-bottom: 10%;
 }
 
-.navbarImgSearchLogout {
+.navbar-img-search-logout {
     display: flex;
     width: 100%;
     align-items: center;
@@ -147,30 +165,17 @@
     transition: 850ms;
 }
 
-.navbarImgSearchLogout:hover {
+.navbar-img-search-logout:hover {
     background-color: black;
     transition: 850ms;
 }
 
-/*.navbarContent::before {*/
-/*    content: "";*/
-/*    background: url("./images/movielist.jpg") center;*/
-/*    position: absolute;*/
-/*    filter: blur(5px);*/
-/*    top: 0;*/
-/*    right: 0;*/
-/*    bottom: 0;*/
-/*    left: 0;*/
-/*    opacity: 0.2;*/
-/*}*/
-
-
-.navbarSearch {
+.navbar-search {
     margin: 1%;
     width: 30%;
 }
 
-.navbarSearchInput {
+.navbar-search-input {
     width: 100%;
     height: 40px;
     border-radius: 10px;
@@ -178,7 +183,55 @@
     border: 2px solid;
 }
 
-.scrollableDivSize {
+.search-bar{
+    padding: 10px;
+    overflow-y: scroll;
+    height: 300px;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.search-bar::-webkit-scrollbar {
+    display: none; /* for Chrome, Safari, and Opera */
+}
+
+.search-bar-parent {
+    border: 1px solid #DFDFDF;
+    background-color: #F5F5F5;
+    height: 100px;
+    margin-bottom: 2%;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.search-image-div {
+    float: left;
+    height: 100%;
+}
+
+.search-image {
+    /*height: 100%;*/
+    padding: 3%;
+    transition: 350ms;
+    height: 98px;
+    width: 60px;
+    border-radius: 10px;
+}
+
+.search-title-div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2%;
+}
+
+.search-title {
+    display: flex;
+    font-size: 16px;
+}
+
+.scrollable-div-size {
     background-color: #F1F1F1;
     display: flex;
     justify-content: center;
@@ -188,7 +241,7 @@
     align-items: center;
 }
 
-.scrollableDiv {
+.scrollable-div {
     display: flex;
     overflow-x: scroll;
     width: 60vw;
@@ -197,15 +250,14 @@
 .footer {
     width: 100%;
     height: 100px;
-    background: rgb(70,70,70);
-    background: linear-gradient(180deg, rgba(70,70,70,1) 0%, rgba(138,138,138,1) 100%);
+    background-color: #171c20;
     display: flex;
     justify-content: center;
     color: white;
     align-items: center;
 }
 
-.categoryLabel {
+.category-label {
     margin-top: 8%;
     display: flex;
     justify-content: center;
@@ -214,7 +266,7 @@
     padding: 1%;
 }
 
-.categoryDiv {
+.category-div {
     margin-left: 20%;
     margin-right: 20%;
 }
@@ -230,19 +282,6 @@
     font-size: 2rem;
     background: none;
 }
-
-/*.slideNext{*/
-/*    background-color: blue;*/
-/*    width: 60px;*/
-/*    height: 60px;*/
-/*    display: flex;*/
-/*    position: absolute;*/
-/*    left: 72%;*/
-/*    !*opacity: 0.5;*!*/
-/*    border-radius: 10px;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*}*/
 
 .nav-menu {
     background-color: #464646;
@@ -261,46 +300,6 @@
     left: 0;
     transition: 350ms;
 }
-
-.slideNext {
-    background-color: blue;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    position: absolute;
-    left: 72%;
-    /*opacity: 0.5;*/
-    border-radius: 10px;
-    justify-content: center;
-    align-items: center;
-}
-
-.slideNext.active {
-    transition: 350ms;
-    background-color: red;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    position: absolute;
-    left: 72%;
-    /*opacity: 0.5;*/
-    border-radius: 10px;
-    justify-content: center;
-    align-items: center;
-}
-
-/*.slideNext{*/
-/*    background-color: blue;*/
-/*    width: 60px;*/
-/*    height: 60px;*/
-/*    display: flex;*/
-/*    position: absolute;*/
-/*    left: 72%;*/
-/*    !*opacity: 0.5;*!*/
-/*    border-radius: 10px;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*}*/
 
 .nav-text {
     display: flex;
@@ -346,12 +345,12 @@ span {
     margin-left: 16px;
 }
 
-.allDataDiv {
+.all-data-div {
     background-color: #F7F7F7;
     padding-bottom: 10px;
 }
 
-.topContentDiv:hover + .movieStoryline {
+.top-content-div:hover + .movie-storyline {
     display: flex;
     align-items: center;
     text-align: center;
@@ -359,7 +358,11 @@ span {
     opacity: 0.9;
 }
 
-.movieStoryline{
+.test{
+    background-color: red;
+}
+
+.movie-storyline{
     margin-top: 10vh;
     border-radius: 10px;
     height: 80vh;
@@ -373,33 +376,36 @@ span {
     /*z-index: 10;*/
 }
 
-.allDataSingleDiv {
+.all-data-single-div {
     border: 1px solid #DFDFDF;
     background-color: #F5F5F5;
     margin-left: 30%;
     margin-right: 30%;
     height: 200px;
     margin-bottom: 2%;
+    cursor: pointer;
 }
 
-.allDataPosterDiv {
+.all-data-poster-div {
     float: left;
     height: 100%;
 }
 
-.allDataPoster {
-    height: 100%;
+.all-data-poster {
+    /*height: 100%;*/
     padding: 3%;
     transition: 350ms;
+    height: 190px;
+    width: 133px;
 }
 
-.allDataPoster:hover {
+.all-data-poster:hover {
     transform: scale(1.03);
     transition: 350ms;
 }
 
 
-.allDataContent {
+.all-data-content {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -407,29 +413,29 @@ span {
     padding: 2%;
 }
 
-.allDataTitleYear {
+.all-data-title-year {
     display: flex;
     font-size: 16px;
 }
 
-.allDataRating {
+.all-data-rating {
     float: left;
     display: flex;
     font-size: 16px;
     align-items: center;
 }
 
-.moviesTitle {
+.movies-title {
     display: flex;
     justify-content: center;
 }
 
-.singleDataImg {
-    width: 200px;
-    height: 200px;
-}
+/*.singleDataImg {*/
+/*    width: 200px;*/
+/*    height: 200px;*/
+/*}*/
 
-.addMovieInfo{
+.add-movie-info{
     border-top: 1px solid black;
     border-bottom: 1px solid black;
     display: flex;
@@ -439,8 +445,112 @@ span {
     margin-bottom: 10px;
 }
 
-.addMovieContent{
+.add-movie-warning{
+    background-color: #FFADAD;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: center;
+    padding: 3%;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.add-movie-content{
     margin-left: 20%;
     margin-right: 20%;
     padding-bottom: 10px;
+}
+
+.details-div{
+    margin-left: 20%;
+    margin-right: 20%;
+    height: 400px;
+}
+
+.details-title{
+    font-size: 50px;
+}
+
+.details-title-parent{
+    display: flex;
+    justify-content: center;
+}
+
+.details-content {
+    /*background-color: blue;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2%;
+}
+
+.details-main-div {
+    align-items: center;
+    text-align: center;
+}
+
+.details-image {
+    float: left;
+    height: 286px;
+    width: 200px;
+}
+
+.space{
+    width: 100%;
+    height: 100px;
+}
+
+.form-control-nickname{
+    width: 100%;
+    height: 42px;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.form-control-email{
+    width: 100%;
+    height: 42px;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.form-control-password{
+    width: 100%;
+    height: 42px;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.form-control-nickname-warning{
+    width: 100%;
+    height: 42px;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-color: red;
+    background-color: #FFADAD;
+}
+
+.form-control-email-warning{
+    width: 100%;
+    height: 42px;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-color: red;
+    background-color: #FFADAD;
+}
+
+.form-control-password-warning{
+    width: 100%;
+    height: 42px;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-color: red;
+    background-color: #FFADAD;
 }

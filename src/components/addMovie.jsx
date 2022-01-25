@@ -1,54 +1,102 @@
 import React, {useState} from 'react';
-import obrazek from "../images/film.png";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {useNavigate} from "react-router-dom";
 import Sidebar from "./sidebar";
 import Footer from "./footer";
 import Navbar from "./navbar";
+import axios from "axios";
 
 const AddMovie = () => {
 
-    const [nickname, setNickname] = useState('')
-    const [email, setEmail] = useState('')
-    const [name, setName] = useState('')
-    const [surname, setSurname] = useState('')
-    const [password, setPassword] = useState('')
-    const [show, setShow] = useState(false)
-    const [birthdayDay, setBirthdayDay] = useState('01')
-    const [birthdayMonth, setBirthdayMonth] = useState('01')
-    const [birthdayYear, setBirthdayYear] = useState('1988')
-    const [birthday, setBirthday] = useState('01-01-1988')
+    const [movieTitle, setMovieTitle] = useState('')
+    const [movieImage, setMovieImage] = useState('')
+    const [movieContent, setMovieContent] = useState('')
+    const [showElement, setShowElement] = React.useState(false)
 
     const navigate = useNavigate();
 
-    const LogOutButton = () => {
-        navigate('/login')
+    const GoToMainButton = () => {
+        navigate('/');
+        window.location.reload(false);
     };
 
+    const HandleChangeTitle = (event) => {
+        setMovieTitle(event.currentTarget.value);
+    };
+
+    const HandleChangeImage = (event) => {
+        setMovieImage(event.currentTarget.value);
+    };
+
+    const HandleChangeContent = (event) => {
+        setMovieContent(event.currentTarget.value);
+    };
+
+    const WarningMessage = () => {
+        if (showElement === false) {
+            setShowElement(true)
+        }
+
+        setTimeout(function () {
+            setShowElement(false)
+        }, 2500);
+    }
+
+    const addMovieButton = () => {
+        if ((movieTitle !== '' && movieImage !== '' && movieContent !== '')) {
+            axios({
+                url: 'https://pr-movies.herokuapp.com/api/movies',
+                method: 'POST',
+                data: {
+                    "title": movieTitle,
+                    "image": movieImage,
+                    "content": movieContent
+                }
+            })
+                .then(() => {
+                    console.log('Data has been sent to the server');
+                    GoToMainButton();
+                })
+                .catch(() => {
+                    console.log('Internal server error');
+                });
+        } else {
+            WarningMessage()
+        }
+    }
 
     return (
         <div>
             <div>
                 <Navbar/>
-                <div className="addMovieContent">
+                <div className="add-movie-content">
+                    <div>
 
-                    <div className="addMovieInfo">
-                        Cieszymy się że chcesz dodać film na naszej stronie. Podążaj za instrukcjami, a na pewno się uda :)
                     </div>
-                    <div id="signForm">
-                        <form id="formSign">
-                            <input className="form-control" placeholder="Podaj tytuł"/><br/>
-                            <input className="form-control" placeholder="Podaj rok powstania filmu" /><br/>
-                            <input className="form-control" placeholder="Podaj gatunek filmu" /><br/>
-                            <input className="form-control" placeholder="Podaj fabułę filmu" /><br/>
-                            <input className="form-control" placeholder="Podaj link do plakatu, np https://images-na.ssl-images-amazon.com/images/M/MV5BMTk2Mjc2NzYxNl5BMl5BanBnXkFtZTgwMTA2OTA1NDM@._V1_SY500_CR0,0,320,500_AL_.jpg"/><br/>
+                    {!showElement ?
+                        <div className="add-movie-info">
+                            Cieszymy się że chcesz dodać film na naszej stronie. Podążaj za instrukcjami, a na pewno się
+                            uda
+                            :)
+                        </div>
+                        : <div className="add-movie-warning">Uzupełnij wszystkie dane</div>}
+                    <div>
+                        <form>
+                            <input className="form-control" placeholder="Podaj tytuł"
+                                   onChange={HandleChangeTitle}/><br/>
+                            <input className="form-control"
+                                   placeholder="Podaj link do plakatu, np https://fwcdn.pl/fpo/08/37/837/7088785.6.jpg"
+                                   onChange={HandleChangeImage}/><br/>
+                            <input className="form-control" placeholder="Podaj fabułę filmu"
+                                   onChange={HandleChangeContent}/><br/>
 
-                            <button className="btn btn-primary" id="createAccountButton">
+                            <div className="btn btn-primary" id="createAccountButton" onClick={() => {
+                                addMovieButton();
+                            }}>
                                 Dodaj film!
-                            </button>
+                            </div>
                         </form>
                     </div>
-
                 </div>
                 <Sidebar/>
                 <Footer/>

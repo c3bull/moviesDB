@@ -1,41 +1,50 @@
-import React from 'react';
-import obrazek from "../images/film.png";
-import {Sidebardata} from "./sidebardata";
-import {Link, useNavigate} from "react-router-dom";
-import {moviesDatabase} from "./moviesdb";
+import React, {useEffect, useState} from 'react';
+import {useNavigate} from "react-router-dom";
 import * as AiIcons from "react-icons/ai";
 import Sidebar from "./sidebar";
 import Footer from "./footer";
 import Navbar from "./navbar";
+import axios from "axios";
 
 const AllSeries = () => {
 
     const navigate = useNavigate();
+    const [movies, setMovies] = useState([])
 
-    const LogOutButton = () => {
-        navigate('/login')
+    const goToDetailsButton = (id) => {
+        navigate('/details/' + id)
     };
+
+    useEffect(() => {
+        axios.get('https://pr-movies.herokuapp.com/api/movies')
+            .then((response) => {
+                setMovies(response.data.reverse())
+                console.log('movies ' + movies)
+            }).then()
+    }, []);
 
     return (
         <div>
-            <div className="allDataDiv">
+            <div className="all-data-div">
                 <Navbar/>
                 <div>
-                    {moviesDatabase.map((item, index) => {
+                    {movies.map((item, index) => {
                         return (
-                            <div className="allDataSingleDiv" key={index}>
+                            <div className="all-data-single-div" key={index} onClick={() => {
+                                goToDetailsButton(item.id)
+                            }}>
 
-                                <div className="allDataPosterDiv">
-                                    <img src={item.posterurl} className="allDataPoster"/>
+                                <div className="all-data-poster-div">
+                                    <img src={item.image} className="all-data-poster"/>
                                 </div>
-                                <div className="allDataContent">
-                                    <div className="allDataTitleYear">
-                                        {item.title} • {item.year}
+                                <div className="all-data-content">
+                                    <div className="all-data-title-year">
+                                        {item.title}{/* • {item.year}*/}
                                     </div>
-                                    <div className="allDataRating">
+                                    <div className="all-data-rating">
                                         <AiIcons.AiFillStar color="orange" size="20px"/> {item.imdbRating}
                                     </div>
-                                    <div className="allDataRating">
+                                    <div className="all-data-rating">
                                         {item.genres}
                                     </div>
                                 </div>

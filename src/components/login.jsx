@@ -2,63 +2,65 @@ import React, {useState} from 'react';
 import "../App.css"
 import obrazek from "../images/film.png"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {useHistory} from "react-router-dom";
 import {useNavigate} from 'react-router-dom';
+import axios from "axios";
 
 const Login = (props) => {
 
     const navigate = useNavigate();
+    const [inputLogin, setInputLogin] = useState('')
+    const [inputPassword, setInputPassword] = useState('')
 
     const LogInButton = () => {
-        navigate('/')
+        navigate('/');
+        window.location.reload(false);
     };
 
     const SignUpButton = () => {
-        navigate('/signUp')
+        navigate('/signup')
+        window.location.reload(false);
     };
+
+    const CheckAuth = () => {
+        axios({
+            method: 'post',
+            url: 'https://pr-movies.herokuapp.com/api/user/auth',
+            data: {
+                login: inputLogin,
+                password: inputPassword
+            }
+        }).then((response) => {
+            localStorage.setItem('token', response.data.token);
+            LogInButton();
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
 
     return (
 
-        <div id="loginBackground">
-            <div id="loginSecondBackground">
-                <div className="loginContent">
-                    <div className="imageCss">
-                        <img className="loginImage" src={obrazek}/>
+        <div id="login-background">
+            <div id="login-second-background">
+                <div className="login-content">
+                    <div className="image-css">
+                        <img className="login-image" src={obrazek}/>
                     </div>
                     <form>
                         <div className="mb-3">
-                            <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                            <input type="email" className="form-control" id="exampleInputEmail1"
-                                   aria-describedby="emailHelp"/>
+                            <label className="form-label">Nazwa</label>
+                            <input type="text" className="form-control" id="exampleInputEmail1"
+                                   onChange={e => setInputLogin(e.target.value)}/>
 
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                            <input type="password" className="form-control" id="exampleInputPassword1"/>
+                            <label className="form-label">Hasło</label>
+                            <input type="password" className="form-control" id="exampleInputPassword1"
+                                   onChange={e => setInputPassword(e.target.value)}/>
                         </div>
 
-                        <button type="submit" className="btn btn-primary" onClick={LogInButton}>Log in</button>
-                        <button className="btn btn-outline-primary" onClick={SignUpButton}>Sign up</button>
+                        <div className="btn btn-primary" onClick={CheckAuth}>Zaloguj</div>
+                        <div className="btn btn-outline-primary" onClick={SignUpButton}>Zarejestruj</div>
                     </form>
-                    {/*<form className="loginForm">*/}
-                    {/*    <input id="loginInput" placeholder="Email" size="lg" onChange={HandleChangeEmail}/>*/}
-                    {/*    <inputGroup size="md">*/}
-                    {/*        <input*/}
-                    {/*            type={show ? "text" : "password"}*/}
-                    {/*            placeholder="Enter password"*/}
-                    {/*            onChange={HandleChangePass}*/}
-                    {/*        />*/}
-                    {/*        <inputRightElement width="4.5rem">*/}
-                    {/*            <button color="black" onClick={handleClick}>*/}
-                    {/*                {show ? "Hide" : "Show"}*/}
-                    {/*            </button>*/}
-                    {/*        </inputRightElement>*/}
-                    {/*    </inputGroup>*/}
-                    {/*    <br/>*/}
-                    {/*    <button type="submit">Log in</button>*/}
-                    {/*    &nbsp;&nbsp;*/}
-                    {/*    <button>Sign up</button>*/}
-                    {/*</form>*/}
                 </div>
             </div>
         </div>

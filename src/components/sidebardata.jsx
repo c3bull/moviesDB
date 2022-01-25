@@ -1,7 +1,5 @@
-import React, {useState} from 'react';
-import * as FaIcons from "react-icons/fa";
+import React from 'react';
 import * as AiIcons from "react-icons/ai";
-import * as IoIcons from "react-icons/io";
 import * as BiIcons from "react-icons/bi";
 import * as MdIcons from "react-icons/md";
 
@@ -32,7 +30,7 @@ export const Sidebardata = [
     },
     {
         title: 'Dodaj Film!',
-        path: '/addmovie',
+        path: '/add',
         icon: <AiIcons.AiFillPlusCircle />,
         cName: 'nav-text'
     },
