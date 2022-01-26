@@ -467,6 +467,11 @@ span {
     margin-right: 20%;
     height: 400px;
 }
+.details-line{
+    height: 1px;
+    margin-bottom: 7px;
+    background-color: black;
+}
 
 .details-title{
     font-size: 50px;

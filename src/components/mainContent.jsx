@@ -29,7 +29,7 @@ const MainContent = () => {
                         </div>
                         <div className="scrollable-div-size">
                             <div className="scrollable-div">
-                                {movies.slice(0, 10).map((item, index) => (
+                                {movies.slice(3, 13).map((item, index) => (
                                     <SingleTopTen id={item.id}
                                                   posterurl={item.image}
                                                   title={item.title}
@@ -62,7 +62,7 @@ const MainContent = () => {
                         </div>
                         <div className="scrollable-div-size">
                             <div className="scrollable-div">
-                                {movies.slice(20, 30).map((item, index) => (
+                                {movies.slice(120, 130).map((item, index) => (
                                     <SingleTopTen id={item.id}
                                                   posterurl={item.image}
                                                   title={item.title}
@@ -78,7 +78,7 @@ const MainContent = () => {
                         </div>
                         <div className="scrollable-div-size">
                             <div className="scrollable-div">
-                                {movies.slice(30, 40).map((item, index) => (
+                                {movies.slice(137, 147).map((item, index) => (
                                     <SingleTopTen id={item.id}
                                                   posterurl={item.image}
                                                   title={item.title}

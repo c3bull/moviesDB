@@ -11,7 +11,7 @@ export const Sidebardata = [
         cName: 'nav-text'
     },
     {
-        title: 'Wszystko',
+        title: 'Baza danych',
         path: '/all',
         icon: <AiIcons.AiFillDatabase />,
         cName: 'nav-text'

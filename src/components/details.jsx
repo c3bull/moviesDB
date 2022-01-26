@@ -44,8 +44,11 @@ const Details = (route) => {
             <div className="details-main-div">
                 <Navbar/>
                 <div className="details-div">
+
                     <div className="details-title-parent">
                         <div className="details-title"> {movieDetails.title}</div>
+                    </div>
+                    <div className="details-line">
                     </div>
                     <div>
                         <img src={movieDetails.image} className="details-image"/>

@@ -13,7 +13,6 @@ function Sidebar() {
 
     const showSidebar = () => setSidebar(!sidebar)
 
-
     return (
         <div>
             <div className="sidebar">
